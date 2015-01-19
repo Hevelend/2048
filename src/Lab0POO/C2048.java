@@ -1,5 +1,7 @@
 package Lab0POO;
 
+import java.util.Random;
+
 public class C2048 {
 	// Tableau contenant les valeurs de la partie
 	private int BoardGame[][] = new int[4][4];
@@ -14,6 +16,7 @@ public class C2048 {
 			for (int x=0; x < 3; x++){
 				BoardGame[y][x] = 0;
 			}
+			
 		}
 	}
 
@@ -98,4 +101,42 @@ public class C2048 {
 		Draw += "---------------------\n";
 		return Draw;			
 	}
+	
+	//fonction qui ajoute aléatoirement une nouvelle tuile de 2 ou 4
+	//sur le plateau de jeu
+
+		private void addTile(){
+			
+			int valeurMax=4;
+			int valeurMin=1;
+			int randomTile=0;
+			int i=0;
+			
+			//on cree un nombre aléatoire qui permettra de choisir si on obtient un
+			//deux ou un quatre sur le plateau de jeu
+			Random rand = new Random();
+			int nombreAleatoire = rand.nextInt(2); 
+			
+				if (nombreAleatoire <= 0.5){
+					randomTile=2; //
+				}
+				else{
+					randomTile=4;
+				}
+			
+			
+				while (i != 2){ // on effectue les lignes suivantes deux fois
+						
+					// Les deux variables suivantes permettent de choisir une case 
+					// aléatoirement dans le plateau de jeu 
+					
+					int v1 = (int)(Math.random()*(valeurMax-valeurMin))+valeurMin;
+					int v2 = (int)(Math.random()*(valeurMax-valeurMin))+valeurMin;
+					
+					if(BoardGame[v1][v2] == 0){//on vérifie que la case aléatoire est vide
+					BoardGame[v1][v2] = randomTile; //on place la valeur 2 ou 4 aléatoirement
+					i++;
+						}
+					}	
+				}
 }
