@@ -8,24 +8,26 @@ public class C2048 {
 	private int Score = 0; // Score du joueur
 	private boolean EndGame = true; // True -> partie en cours
 	private int GameSeed = 0; // Seed de génération
+	private int LenghtBoardGame = 4;
 	
 	// Constructeur
 	protected C2048() {
 		// Initialisation du tableau
-		initBoardGame(4);
+		initBoardGame();
 	}
 	
 	// Constructeur surchargé
 		protected C2048(int LenghtGame, int Seed) {
 			GameSeed = Seed;
-			initBoardGame(LenghtGame);
+			LenghtBoardGame = LenghtGame;
+			initBoardGame();
 		}
 
 	// Initialisation du plateau
-	private void initBoardGame(int Lenght){
-		BoardGame = new int[Lenght][Lenght];
-		for (int y=0; y < Lenght; y++){
-			for (int x=0; x < Lenght; x++){
+	private void initBoardGame(){
+		BoardGame = new int[LenghtBoardGame][LenghtBoardGame];
+		for (int y=0; y < LenghtBoardGame - 1; y++){
+			for (int x=0; x < LenghtBoardGame - 1; x++){
 				BoardGame[y][x] = 0;
 			}
 		}
@@ -51,16 +53,16 @@ public class C2048 {
 		int yAdjacent = 0;
 		
 		// Parcours du tableau
-		for (int y=0; y < 3; y++){
-			for (int x=0; x < 3; x++){
+		for (int y=0; y < LenghtBoardGame - 1; y++){
+			for (int x=0; x < LenghtBoardGame - 1; x++){
 				// Vérifie les cases adjacentes
-				if(x < 3){
+				if(x < LenghtBoardGame - 1){
 					xAdjacent = x +1;
 				} else {
 					xAdjacent = x;
 				}
 				
-				if(y < 3){
+				if(y < LenghtBoardGame - 1){
 					yAdjacent = y +1;
 				} else {
 					yAdjacent = y;
@@ -92,9 +94,9 @@ public class C2048 {
 		Draw = "---------------------";
 		
 		// Construction du plateau
-		for (int y=0; y < 3; y++){
+		for (int y=0; y < LenghtBoardGame - 1; y++){
 			Draw += "|";
-			for (int x=0; x < 3; x++){
+			for (int x=0; x < LenghtBoardGame - 1; x++){
 				// On récupère la valeur dans le tableau
 				// et on mets en page
 				String Line = Integer.toString(BoardGame[y][x]);
