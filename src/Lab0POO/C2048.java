@@ -120,61 +120,38 @@ public class C2048 {
 
 		private void addTile(){
 			
-			int valeurMax=4;
-			int valeurMin=1;
-			int randomTile=0;
-			int i=0;
-			
-			//on cree un nombre aléatoire qui permettra de choisir si on obtient un
-			//deux ou un quatre sur le plateau de jeu
-			Random rand = new Random();
-			int nombreAleatoire = rand.nextInt(2); 
-			
-				if (nombreAleatoire <= 0.5){
-					randomTile=2; //
-				}
-				else{
-					randomTile=4;
-				}
-			
-			
-				while (i != 2){ // on effectue les lignes suivantes deux fois
-						
-					// Les deux variables suivantes permettent de choisir une case 
-					// aléatoirement dans le plateau de jeu 
-					
-					int v1 = (int)(Math.random()*(valeurMax-valeurMin))+valeurMin;
-					int v2 = (int)(Math.random()*(valeurMax-valeurMin))+valeurMin;
-					
-					if(BoardGame[v1][v2] == 0){//on vérifie que la case aléatoire est vide
-					BoardGame[v1][v2] = randomTile; //on place la valeur 2 ou 4 aléatoirement
-					i++;
-						}
-					}	
-				}
+		int valeurMax=4;
+		int valeurMin=1;
+		int randomTile=0;
+		int i=0;
 		
-		private void additionTile(int direction){
-			switch (direction)
-			{
-
-			  case 1: // haut
-
-			    break;
-
-			  case 2: //gauche
-
-			    break; 
-
-			  case 3: //droite
-
-			    break;
-
-			  case 4: //bas
-
-				break;
-				
-			  default:
-
-			}
+		//on cree un nombre aléatoire qui permettra de choisir si on 
+		//obtient un deux ou un quatre sur le plateau de jeu
+		Random rand = new Random();
+		int nombreAleatoire = rand.nextInt(2); 
+		
+		if (nombreAleatoire <= 0.5){
+			randomTile=2; 
 		}
+		else{
+			randomTile=4;
+		}
+		
+		while (i != 2){ // on effectue les lignes suivantes deux fois
+				
+		// Les deux variables suivantes permettent de choisir une case 
+		// aléatoirement dans le plateau de jeu 
+		
+		int v1 = (int)(Math.random()*(valeurMax-valeurMin))+valeurMin;
+		int v2 = (int)(Math.random()*(valeurMax-valeurMin))+valeurMin;
+		
+			if(BoardGame[v1][v2] == 0){ //on vérifie que la case aléatoire est vide
+				//on place la valeur 2 ou 4 aléatoirement
+				BoardGame[v1][v2] = randomTile; 
+				i++;
+				}
+			}	
+		}
+		
+
 }
