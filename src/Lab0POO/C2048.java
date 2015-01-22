@@ -1,6 +1,7 @@
 package Lab0POO;
 
 import java.util.Random;
+import java.util.Scanner;
 
 public class C2048 {
 	// Tableau contenant les valeurs de la partie
@@ -8,7 +9,8 @@ public class C2048 {
 	private int Score = 0; // Score du joueur
 	private boolean EndGame = true; // True -> partie en cours
 	private int GameSeed = 0; // Seed de génération
-	private int LenghtBoardGame = 4;
+	private int LenghtBoardGame = 4; // Taille du plateau de jeu
+	private int CounterLoop = 1; // Utiliser pour le nextint du random
 	
 	// Constructeur
 	protected C2048() {
@@ -115,11 +117,42 @@ public class C2048 {
 		return Draw;			
 	}
 	
+	// Choix d'une direction ou génération avec un seed
+	private int directionChoice(){
+		int Direction = 1;
+		boolean Loop = true;
+		String Text = "Saisir un chiffre : 1 Haut, 2 Gauche, 3Droite, 4 Bas";
+		
+		// Choix utilisateur
+		if(GameSeed == 0){
+			while(Loop == true){
+				System.out.println(Text);
+			    Scanner Reader = new Scanner(System.in);
+			    if(Reader.nextInt() == 1 || Reader.nextInt() == 2 ||
+			       Reader.nextInt() == 3 || Reader.nextInt() == 4  ){
+			    	Direction = Reader.nextInt();
+			    	Loop = false;
+			    }
+			}
+		} else {
+			// Génération avec un seed
+			while(Loop == true){
+				RandomDirection randomDir = new RandomDirection(GameSeed);
+				Direction = randomDir.random(CounterLoop);
+			    if(Direction == 1 || Direction == 2 || Direction == 3 ||
+			       Direction == 4){
+			    	Loop = false;
+			    }
+			    CounterLoop ++;
+			}
+		}
+		
+		return Direction;
+	}
+	
 	//fonction qui ajoute aléatoirement une nouvelle tuile de 2 ou 4
 	//sur le plateau de jeu
-
-		private void addTile(){
-			
+	private void addTile(){
 		int valeurMax=4;
 		int valeurMin=1;
 		int randomTile=0;
@@ -132,8 +165,7 @@ public class C2048 {
 		
 		if (nombreAleatoire <= 0.5){
 			randomTile=2; 
-		}
-		else{
+		} else{
 			randomTile=4;
 		}
 		
@@ -145,24 +177,23 @@ public class C2048 {
 		int v1 = (int)(Math.random()*(valeurMax-valeurMin))+valeurMin;
 		int v2 = (int)(Math.random()*(valeurMax-valeurMin))+valeurMin;
 		
-			if(BoardGame[v1][v2] == 0){ //on vérifie que la case aléatoire est vide
-				//on place la valeur 2 ou 4 aléatoirement
-				BoardGame[v1][v2] = randomTile; 
-				i++;
-				}
-			}	
-		}
+		if(BoardGame[v1][v2] == 0){ //on vérifie que la case aléatoire est vide
+			//on place la valeur 2 ou 4 aléatoirement
+			BoardGame[v1][v2] = randomTile; 
+			i++;
+			}
+		}	
+	}
 		
-		private void additionLeft(){
-			for (int y=0; y < LenghtBoardGame ; y++){
-				for (int x= LenghtBoardGame -1; x >= 0; x--){
+	private void additionLeft(){
+		for (int y=0; y < LenghtBoardGame ; y++){
+			for (int x= LenghtBoardGame -1; x >= 0; x--){
+				
+				int var1 = BoardGame[y][x];
 					
-					int var1 = BoardGame[y][x];
-						
-						
 					
-				}
-			}	
-			
-		}
+				
+			}
+		}	
+	}
 }
