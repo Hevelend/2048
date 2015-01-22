@@ -58,7 +58,7 @@ public class C2048 {
 		for (int y=0; y < LenghtBoardGame; y++){
 			for (int x=0; x < LenghtBoardGame; x++){
 				// Vérifie les cases adjacentes
-				if(x < LenghtBoardGame - 1){
+				if(x < LenghtBoardGame){
 					xAdjacent = x +1;
 				} else {
 					xAdjacent = x;

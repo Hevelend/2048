@@ -6,5 +6,4 @@ public class C2048Jeu {
 		// TODO Auto-generated method stub
 
 	}
-
 }
