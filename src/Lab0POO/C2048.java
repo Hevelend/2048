@@ -7,7 +7,6 @@ public class C2048 {
 	// Tableau contenant les valeurs de la partie
 	private int BoardGame[][];
 	private int Score = 0; // Score du joueur
-	private boolean EndGame = true; // True -> partie en cours
 	private int GameSeed = 0; // Seed de génération
 	private int LenghtBoardGame = 4; // Taille du plateau de jeu
 	private int CounterLoop = 1; // Utiliser pour le nextint du random
@@ -19,11 +18,11 @@ public class C2048 {
 	}
 	
 	// Constructeur surchargé
-		protected C2048(int LenghtGame, int Seed) {
-			GameSeed = Seed;
-			LenghtBoardGame = LenghtGame;
-			initBoardGame();
-		}
+	protected C2048(int LenghtGame, int Seed) {
+		GameSeed = Seed;
+		LenghtBoardGame = LenghtGame;
+		initBoardGame();
+	}
 
 	// Initialisation du plateau
 	private void initBoardGame(){
@@ -45,10 +44,19 @@ public class C2048 {
 		Score = score;
 	}
 	
+	// Boucle de jeu
+	protected void jouer(){
+		int Direction;
+		
+		this.addTile();
+		Direction = this.directionChoice();
+		this.additionTile(Direction);
+	}
+	
 	// Vérifie si la partie est finie
 	protected boolean isFini(){
 		// Valeur de retour, True = la partie n'est pas finie
-		boolean Running = true;
+		boolean GameOver = false;
 		// Verifie si deux chiffres identiques sont adjacents
 		boolean SameValue = false;
 		int xAdjacent = 0;
@@ -77,17 +85,17 @@ public class C2048 {
 				
 				// Vérifie si le joueur est victorieux
 				if(BoardGame[y][x] == 2048){
-					Running = false;
+					GameOver = true;
 				}
 			}
 		}
 		
 		// Vérifie si le joueur peut encore faire des mouvements
 		if(SameValue == false){
-			Running = false;
+			GameOver = true;
 		}
 		
-		return Running;
+		return GameOver;
 	}
 
 	// Affichage du plateau de jeu
@@ -184,7 +192,25 @@ public class C2048 {
 			}
 		}	
 	}
-		
+	
+	// Switch suivant la direction
+	private void additionTile(int Direction){
+		switch(Direction){
+			case 1:
+				additionTop();
+				break;
+			case 2:
+				additionLeft();	
+				break;
+			case 3:
+				additionRight();
+				break;
+			case 4:
+				additionBottom();
+				break;
+		}
+	}
+	
 	private void additionLeft(){
 		for (int y=0; y < LenghtBoardGame ; y++){
 			for (int x= LenghtBoardGame -1; x >= 0; x--){
