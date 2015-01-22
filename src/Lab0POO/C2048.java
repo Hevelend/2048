@@ -211,15 +211,47 @@ public class C2048 {
 		}
 	}
 	
-	private void additionLeft(){
+	//fonction qui permet de gérer le mouvement à gauche
+	private int additionLeft(){
+		
 		for (int y=0; y < LenghtBoardGame ; y++){
-			for (int x= LenghtBoardGame -1; x >= 0; x--){
-				
+			//on cree une nouvelle ligne 
+			int[] newLine = new int[LenghtBoardGame];
+			int cpt =0;
+			int cpt1=0;
+			for (int x= 0; x < LenghtBoardGame; x++){
 				int var1 = BoardGame[y][x];
-					
-					
-				
+				newLine[x]=0;
+					if(var1 != 0){
+						newLine[cpt]=var1;
+						cpt++;
+					}
+			}
+		for (int x=0; x<LenghtBoardGame; x++){
+			int temp=newLine[x];
+				if (temp != 0){
+					if (x==LenghtBoardGame-1){
+						BoardGame[y][cpt1]=temp;
+						cpt1++;
+					}
+					else{
+						if(newLine[x+1]==temp){
+							BoardGame[y][cpt1]= temp*2;
+							newLine[x+1]=0;
+							cpt1++;
+							
+							Score = temp*2;
+						
+						}
+						else{
+							BoardGame[y][cpt1]=temp;
+							cpt1++;
+						}
+					}
+				}
 			}
 		}	
+		return Score;
 	}
+
 }
