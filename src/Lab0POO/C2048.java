@@ -152,4 +152,29 @@ public class C2048 {
 						}
 					}	
 				}
+		
+		private void additionTile(int direction){
+			switch (direction)
+			{
+
+			  case 1: // haut
+
+			    break;
+
+			  case 2: //gauche
+
+			    break; 
+
+			  case 3: //droite
+
+			    break;
+
+			  case 4: //bas
+
+				break;
+				
+			  default:
+
+			}
+		}
 }
