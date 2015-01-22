@@ -4,22 +4,33 @@ import java.util.Random;
 
 public class C2048 {
 	// Tableau contenant les valeurs de la partie
-	private int BoardGame[][] = new int[4][4];
+	private int BoardGame[][];
 	private int Score = 0; // Score du joueur
 	private boolean EndGame = true; // True -> partie en cours
-	private int UselessVar = 0; // ???
+	private int GameSeed = 0; // Seed de génération
 	
 	// Constructeur
 	protected C2048() {
 		// Initialisation du tableau
-		for (int y=0; y < 3; y++){
-			for (int x=0; x < 3; x++){
+		initBoardGame(4);
+	}
+	
+	// Constructeur surchargé
+		protected C2048(int LenghtGame, int Seed) {
+			GameSeed = Seed;
+			initBoardGame(LenghtGame);
+		}
+
+	// Initialisation du plateau
+	private void initBoardGame(int Lenght){
+		BoardGame = new int[Lenght][Lenght];
+		for (int y=0; y < Lenght; y++){
+			for (int x=0; x < Lenght; x++){
 				BoardGame[y][x] = 0;
 			}
-			
 		}
 	}
-
+		
 	// Retourne le score du joueur
 	protected int getPoint() {
 		return Score;
