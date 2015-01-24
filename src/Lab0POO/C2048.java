@@ -1,5 +1,6 @@
 package Lab0POO;
 
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -134,15 +135,23 @@ public class C2048 {
 		
 		// Choix utilisateur
 		if(GameSeed == 0){
-			while(Loop == true){
+			Scanner ScanReader = new Scanner(System.in);
+			do{
 				System.out.println(Text);
-			    Scanner ScanReader = new Scanner(System.in);
-			    Direction = ScanReader.nextInt();
-			    if(Direction == 1 || Direction == 2 || Direction == 3 ||
-			       Direction == 4  ){
-			    	Loop = false;
-			    }
-			}
+	            try{
+	            	Direction = ScanReader.nextInt();
+	            	ScanReader.nextLine();
+	            }
+	            catch(InputMismatchException e){
+	            	Direction = 0;
+	            	ScanReader.next();
+	            	ScanReader.nextLine();
+	            }
+	            if(Direction == 1 || Direction == 2 || Direction == 3 ||
+ 			       Direction == 4  ){
+ 			    	Loop = false;
+ 			    }
+	        }while(Loop == true);
 		} else {
 			// Génération avec un seed
 			while(Loop == true){
