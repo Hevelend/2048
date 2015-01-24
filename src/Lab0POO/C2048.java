@@ -225,6 +225,9 @@ public class C2048 {
 				newLine[x]=0;
 					if(var1 != 0){
 						newLine[cpt]=var1;
+						
+						// Suppréssion de la cellule déplacée
+						BoardGame[y][x] = 0;
 						cpt++;
 					}
 			}
