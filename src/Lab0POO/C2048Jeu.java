@@ -7,7 +7,7 @@ public class C2048Jeu {
 		C2048 AwesomeGame = new C2048();
 		while (!AwesomeGame.isFini()){
 			AwesomeGame.jouer();
-			AwesomeGame.toString();
+			System.out.println(AwesomeGame);
 		}
 		
 		System.out.println(AwesomeGame.getPoint());

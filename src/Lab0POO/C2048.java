@@ -49,6 +49,7 @@ public class C2048 {
 		int Direction;
 		
 		this.addTile();
+		System.out.println(this);
 		Direction = this.directionChoice();
 		this.additionTile(Direction);
 	}
@@ -66,13 +67,13 @@ public class C2048 {
 		for (int y=0; y < LenghtBoardGame; y++){
 			for (int x=0; x < LenghtBoardGame; x++){
 				// Vérifie les cases adjacentes
-				if(x < LenghtBoardGame){
+				if(x < LenghtBoardGame - 1){
 					xAdjacent = x +1;
 				} else {
 					xAdjacent = x;
 				}
 				
-				if(y < LenghtBoardGame){
+				if(y < LenghtBoardGame - 1){
 					yAdjacent = y +1;
 				} else {
 					yAdjacent = y;
@@ -101,7 +102,7 @@ public class C2048 {
 	// Affichage du plateau de jeu
 	public String toString(){
 		String Draw = ""; // Variable de mise en page
-		Draw = "---------------------";
+		Draw = "---------------------\n";
 		
 		// Construction du plateau
 		for (int y=0; y < LenghtBoardGame; y++){
@@ -135,10 +136,10 @@ public class C2048 {
 		if(GameSeed == 0){
 			while(Loop == true){
 				System.out.println(Text);
-			    Scanner Reader = new Scanner(System.in);
-			    if(Reader.nextInt() == 1 || Reader.nextInt() == 2 ||
-			       Reader.nextInt() == 3 || Reader.nextInt() == 4  ){
-			    	Direction = Reader.nextInt();
+			    Scanner ScanReader = new Scanner(System.in);
+			    Direction = ScanReader.nextInt();
+			    if(Direction == 1 || Direction == 2 || Direction == 3 ||
+			       Direction == 4  ){
 			    	Loop = false;
 			    }
 			}
@@ -254,4 +255,21 @@ public class C2048 {
 		return Score;
 	}
 
+	//fonction qui permet de gérer le mouvement à droite
+	private int additionRight(){
+		
+		return Score;
+	}
+	
+	//fonction qui permet de gérer le mouvement vers le haut
+	private int additionTop(){
+		
+		return Score;
+	}
+	
+	//fonction qui permet de gérer le mouvement vers le bas
+	private int additionBottom(){
+		
+		return Score;
+	}
 }
