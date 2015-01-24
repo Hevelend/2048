@@ -162,10 +162,12 @@ public class C2048 {
 	//fonction qui ajoute aléatoirement une nouvelle tuile de 2 ou 4
 	//sur le plateau de jeu
 	private void addTile(){
-		int valeurMax=3;
-		int valeurMin=0;
-		int randomTile=0;
-		int i=0;
+		int valeurMax = LenghtBoardGame;
+		int valeurMin = 0;
+		int randomTile = 0;
+		int i = 0;
+		int PossibleTile = 2; // Nombre de tuile à placer
+		int FreeTile = 0;
 		
 		//on cree un nombre aléatoire qui permettra de choisir si on 
 		//obtient un deux ou un quatre sur le plateau de jeu
@@ -173,12 +175,27 @@ public class C2048 {
 		int nombreAleatoire = rand.nextInt(2); 
 		
 		if (nombreAleatoire <= 0.5){
-			randomTile=2; 
+			randomTile = 2; 
 		} else{
-			randomTile=4;
+			randomTile = 4;
 		}
 		
-		while (i != 2){ // on effectue les lignes suivantes deux fois
+		// Calcul du nombre d'emplacements vident pour éviter une boucle
+		// infinie si il ne reste qu'une cellule de libre et non deux.
+		for (int y=0; y < LenghtBoardGame; y++){
+			for (int x=0; x < LenghtBoardGame; x++){
+				if(BoardGame[y][x] == 0){
+					FreeTile += 1;
+				}
+			}
+		}
+		if(FreeTile > 2){
+			PossibleTile = 2;
+		} else {
+			PossibleTile = FreeTile;
+		}
+		
+		while (i != PossibleTile){ // on effectue les lignes suivantes deux fois
 				
 			// Les deux variables suivantes permettent de choisir une case 
 			// aléatoirement dans le plateau de jeu 
