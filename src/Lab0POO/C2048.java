@@ -162,8 +162,8 @@ public class C2048 {
 	//fonction qui ajoute aléatoirement une nouvelle tuile de 2 ou 4
 	//sur le plateau de jeu
 	private void addTile(){
-		int valeurMax=4;
-		int valeurMin=1;
+		int valeurMax=3;
+		int valeurMin=0;
 		int randomTile=0;
 		int i=0;
 		
@@ -180,16 +180,16 @@ public class C2048 {
 		
 		while (i != 2){ // on effectue les lignes suivantes deux fois
 				
-		// Les deux variables suivantes permettent de choisir une case 
-		// aléatoirement dans le plateau de jeu 
-		
-		int v1 = (int)(Math.random()*(valeurMax-valeurMin))+valeurMin;
-		int v2 = (int)(Math.random()*(valeurMax-valeurMin))+valeurMin;
-		
-		if(BoardGame[v1][v2] == 0){ //on vérifie que la case aléatoire est vide
-			//on place la valeur 2 ou 4 aléatoirement
-			BoardGame[v1][v2] = randomTile; 
-			i++;
+			// Les deux variables suivantes permettent de choisir une case 
+			// aléatoirement dans le plateau de jeu 
+			
+			int v1 = (int)(Math.random()*(valeurMax-valeurMin))+valeurMin;
+			int v2 = (int)(Math.random()*(valeurMax-valeurMin))+valeurMin;
+			
+			if(BoardGame[v1][v2] == 0){ //on vérifie que la case aléatoire est vide
+				//on place la valeur 2 ou 4 aléatoirement
+				BoardGame[v1][v2] = randomTile; 
+				i++;
 			}
 		}	
 	}
