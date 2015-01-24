@@ -240,42 +240,41 @@ public class C2048 {
 	
 	//fonction qui permet de gérer le mouvement à gauche
 	private int additionLeft(){
-		
-		for (int y=0; y < LenghtBoardGame ; y++){
+		for (int y = 0; y < LenghtBoardGame ; y ++){
 			//on cree une nouvelle ligne 
 			int[] newLine = new int[LenghtBoardGame];
-			int cpt =0;
-			int cpt1=0;
-			for (int x= 0; x < LenghtBoardGame; x++){
+			int cpt = 0;
+			int cpt1 = 0;
+			for (int x = 0; x < LenghtBoardGame; x ++){
 				int var1 = BoardGame[y][x];
-				newLine[x]=0;
+				newLine[x] = 0;
 					if(var1 != 0){
-						newLine[cpt]=var1;
+						newLine[cpt] = var1;
 						
-						// Suppréssion de la cellule déplacée
+						// Suppression de la cellule déplacée
 						BoardGame[y][x] = 0;
-						cpt++;
+						cpt ++;
 					}
 			}
-		for (int x=0; x<LenghtBoardGame; x++){
-			int temp=newLine[x];
+		for (int x = 0; x < LenghtBoardGame; x ++){
+			int temp = newLine[x];
 				if (temp != 0){
-					if (x==LenghtBoardGame-1){
-						BoardGame[y][cpt1]=temp;
-						cpt1++;
+					if (x == LenghtBoardGame - 1){
+						BoardGame[y][cpt1] = temp;
+						cpt1 ++;
 					}
 					else{
-						if(newLine[x+1]==temp){
-							BoardGame[y][cpt1]= temp*2;
-							newLine[x+1]=0;
-							cpt1++;
+						if(newLine[x + 1] == temp){
+							BoardGame[y][cpt1] = temp * 2;
+							newLine[x + 1] = 0;
+							cpt1 ++;
 							
-							Score = temp*2;
+							Score += temp *2;
 						
 						}
 						else{
-							BoardGame[y][cpt1]=temp;
-							cpt1++;
+							BoardGame[y][cpt1] = temp;
+							cpt1 ++;
 						}
 					}
 				}

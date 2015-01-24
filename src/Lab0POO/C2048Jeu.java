@@ -10,6 +10,7 @@ public class C2048Jeu {
 			System.out.println(AwesomeGame);
 		}
 		
-		System.out.println(AwesomeGame.getPoint());
+		System.out.println("Partie terminée ! votre score est de : " +
+		AwesomeGame.getPoint());
 	}
 }
