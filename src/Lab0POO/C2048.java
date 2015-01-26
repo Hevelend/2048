@@ -396,7 +396,7 @@ public class C2048 {
 			for (int y = LenghtBoardGame - 1; y >= 0; y --){
 				int temp = newColumn[y];
 				if (temp != 0){
-					if (y == LenghtBoardGame - 1){
+					if (y == 0){
 						BoardGame[cpt1][x] = temp;
 						cpt1 --;
 					}
