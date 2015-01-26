@@ -151,15 +151,17 @@ public class C2048 {
 	        }while(Loop == true);
 		} else {
 			// Génération avec un seed
+			int TempCounter = CounterLoop;
 			while(Loop == true){
 				RandomDirection randomDir = new RandomDirection(GameSeed);
-				Direction = randomDir.random(CounterLoop);
+				Direction = randomDir.random(TempCounter);
 			    if(Direction == 1 || Direction == 2 || Direction == 3 ||
 			       Direction == 4){
 			    	Loop = false;
 			    }
-			    CounterLoop ++;
+			    TempCounter += 1;
 			}
+			CounterLoop ++;
 		}
 		
 		return Direction;
@@ -372,7 +374,7 @@ public class C2048 {
 		return Score;
 	}
 	
-	//fonction qui permet de gérer le mouvement vers le bas
+	///fonction qui permet de gérer le mouvement vers le bas
 	private int additionBottom(){
 		for (int x = 0; x < LenghtBoardGame ; x ++){
 			//on cree une nouvelle ligne 
@@ -401,7 +403,7 @@ public class C2048 {
 						if(newColumn[y - 1] == temp){
 							BoardGame[cpt1][x] = temp * 2;
 							BoardGame[y-1][x] = 0;
-							newColumn[cpt1-1] = 0;
+							newColumn[cpt1 - 1] = 0;
 							cpt1 --;
 							
 							Score += temp * 2;
