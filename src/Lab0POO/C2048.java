@@ -131,7 +131,7 @@ public class C2048 {
 	private int directionChoice(){
 		int Direction = 1;
 		boolean Loop = true;
-		String Text = "Saisir un chiffre : 1 Haut, 2 Gauche, 3Droite, 4 Bas";
+		String Text = "Saisir un chiffre : 1 Haut, 2 Gauche, 3 Droite, 4 Bas";
 		
 		// Choix utilisateur
 		if(GameSeed == 0){
@@ -279,13 +279,54 @@ public class C2048 {
 					}
 				}
 			}
-		}	
+		}
 		return Score;
 	}
 
 	//fonction qui permet de gérer le mouvement à droite
 	private int additionRight(){
-		
+		for (int y = 0; y < LenghtBoardGame ; y ++){
+			//on cree une nouvelle ligne 
+			int[] newLine = new int[LenghtBoardGame];
+			int cpt = LenghtBoardGame - 1;
+			int cpt1 = LenghtBoardGame - 1;
+			for (int x = LenghtBoardGame - 1; x >= 0; x --){
+				int var1 = BoardGame[y][x];
+				newLine[x] = 0;
+				if(var1 != 0){
+					newLine[cpt] = var1;
+					
+					// Suppression de la cellule déplacée
+					BoardGame[y][x] = 0;
+					cpt --;
+				}
+			}
+			for (int x = 0; x < LenghtBoardGame; x ++){
+				int temp = newLine[x];
+				if (temp != 0){
+					if (x == LenghtBoardGame - 1){
+						BoardGame[y][cpt1] = temp;
+						cpt1 --;
+					}
+					else{
+						if(newLine[x + 1] == temp){
+							BoardGame[y][cpt1] = temp * 2;
+							BoardGame[y][x] = 0;
+							newLine[cpt1] = 0;
+							cpt1 --;
+							
+							Score += temp * 2;
+						
+						}
+						else{
+							BoardGame[y][cpt1] = temp;
+							newLine[x] = 0;
+							cpt1 --;
+						}
+					}
+				}
+			}			
+		}
 		return Score;
 	}
 	
