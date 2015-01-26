@@ -378,7 +378,7 @@ public class C2048 {
 			//on cree une nouvelle ligne 
 			int[] newColumn = new int[LenghtBoardGame];
 			int cpt = LenghtBoardGame - 1;
-			int cpt1 =0;
+			int cpt1 = LenghtBoardGame - 1;
 			for (int y = LenghtBoardGame - 1; y >= 0; y --){
 				int var1 = BoardGame[y][x];
 				newColumn[y] = 0;
@@ -390,25 +390,25 @@ public class C2048 {
 					cpt --;
 				}
 			}
-			for  (int y = LenghtBoardGame - 1; y >= 0; y --){
+			for (int y = LenghtBoardGame - 1; y >= 0; y --){
 				int temp = newColumn[y];
 				if (temp != 0){
 					if (y == 0){
-						BoardGame[cpt1][x] = temp;
+						BoardGame[cpt1][y] = temp;
 						cpt1 --;
 					}
 					else{
-						if(newColumn[y + 1] == temp){
+						if(newColumn[y - 1] == temp){
 							BoardGame[cpt1][x] = temp * 2;
-							BoardGame[y][x] = 0;
-							newColumn[cpt1] = 0;
+							BoardGame[y-1][x] = 0;
+							newColumn[cpt1-1] = 0;
 							cpt1 --;
 							
 							Score += temp * 2;
 						
 						}
 						else{
-							BoardGame[cpt1][y] = temp;
+							BoardGame[cpt1][x] = temp;
 							newColumn[y] = 0;
 							cpt1 --;
 						}
