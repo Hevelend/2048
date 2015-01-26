@@ -300,18 +300,18 @@ public class C2048 {
 					cpt --;
 				}
 			}
-			for (int x = 0; x < LenghtBoardGame; x ++){
+			for (int x = LenghtBoardGame - 1; x >= 0; x --){
 				int temp = newLine[x];
 				if (temp != 0){
-					if (x == LenghtBoardGame - 1){
+					if (x == 0){
 						BoardGame[y][cpt1] = temp;
 						cpt1 --;
 					}
 					else{
-						if(newLine[x + 1] == temp){
+						if(newLine[x - 1] == temp){
 							BoardGame[y][cpt1] = temp * 2;
-							BoardGame[y][x] = 0;
-							newLine[cpt1] = 0;
+							BoardGame[y][x-1] = 0;
+							newLine[cpt1-1] = 0;
 							cpt1 --;
 							
 							Score += temp * 2;
