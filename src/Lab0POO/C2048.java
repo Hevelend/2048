@@ -57,43 +57,40 @@ public class C2048 {
 	
 	// Vérifie si la partie est finie
 	protected boolean isFini(){
-		// Valeur de retour, True = la partie n'est pas finie
+		// Valeur de retour, True = la partie est finie
 		boolean GameOver = false;
 		// Verifie si deux chiffres identiques sont adjacents
 		boolean SameValue = false;
-		int xAdjacent = 0;
-		int yAdjacent = 0;
+		// Verifie si il reste des emplacements disponibles
+		boolean FreeTile = false;
 		
 		// Parcours du tableau
 		for (int y=0; y < LenghtBoardGame; y++){
 			for (int x=0; x < LenghtBoardGame; x++){
-				// Vérifie les cases adjacentes
-				if(x < LenghtBoardGame - 1){
-					xAdjacent = x +1;
-				} else {
-					xAdjacent = x;
-				}
-				
-				if(y < LenghtBoardGame - 1){
-					yAdjacent = y +1;
-				} else {
-					yAdjacent = y;
-				}
-				
-				if(BoardGame[y][x] == BoardGame[yAdjacent][x] ||
-				   BoardGame[y][x] == BoardGame[y][xAdjacent]) {
-					SameValue = true;
-				}
-				
-				// Vérifie si le joueur est victorieux
-				if(BoardGame[y][x] == 2048){
+				// Verifie si il reste des emplacements
+				if(BoardGame[y][x] == 0){
+					FreeTile = true;
+				} else if(BoardGame[y][x] == 2048){
+					// Vérifie si le joueur est victorieux
 					GameOver = true;
+				} else {
+					// Vérifie les cases adjacentes
+					if(x < LenghtBoardGame - 1){
+						if(BoardGame[y][x] == BoardGame[y][x + 1]) {
+							SameValue = true;
+						}
+					}
+					if(y < LenghtBoardGame - 1){
+						if(BoardGame[y][x] == BoardGame[y + 1][x]) {
+							SameValue = true;
+						}
+					}
 				}
 			}
 		}
 		
 		// Vérifie si le joueur peut encore faire des mouvements
-		if(SameValue == false){
+		if(SameValue == false && FreeTile == false){
 			GameOver = true;
 		}
 		
