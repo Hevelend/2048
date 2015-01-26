@@ -332,13 +332,94 @@ public class C2048 {
 	
 	//fonction qui permet de gérer le mouvement vers le haut
 	private int additionTop(){
-		
+		for (int x = 0; x < LenghtBoardGame ; x ++){
+			//on cree une nouvelle colonne 
+			int[] newColumn = new int[LenghtBoardGame];
+			int cpt = 0;
+			int cpt1 = 0;
+			for (int y = 0; y < LenghtBoardGame; y ++){
+				int var1 = BoardGame[y][x];
+				newColumn[y] = 0; // on cree une nouvelle colonne
+					if(var1 != 0){ // si la première case n'est pas vide
+						newColumn[cpt] = var1;
+						
+						// Suppression de la cellule déplacée
+						BoardGame[y][x] = 0;
+						cpt ++;
+					}
+			}
+		for (int y = 0; y < LenghtBoardGame; y ++){
+			int temp = newColumn[y];
+				if (temp != 0){
+					if (y == LenghtBoardGame - 1){
+						BoardGame[cpt1][x] = temp;
+						cpt1 ++;
+					}
+					else{
+						if(newColumn[y + 1] == temp){
+							BoardGame[cpt1][x] = temp * 2;
+							newColumn[y + 1] = 0;
+							cpt1 ++;
+							
+							Score += temp *2;
+						
+						}
+						else{
+							BoardGame[cpt1][x] = temp;
+							cpt1 ++;
+						}
+					}
+				}
+			}
+		}
 		return Score;
 	}
 	
 	//fonction qui permet de gérer le mouvement vers le bas
 	private int additionBottom(){
-		
+		for (int x = 0; x < LenghtBoardGame ; x ++){
+			//on cree une nouvelle ligne 
+			int[] newColumn = new int[LenghtBoardGame];
+			int cpt = LenghtBoardGame - 1;
+			int cpt1 = LenghtBoardGame - 1;
+			for (int y = LenghtBoardGame - 1; y >= 0; y --){
+				int var1 = BoardGame[y][x];
+				newColumn[y] = 0;
+				if(var1 != 0){
+					newColumn[cpt] = var1;
+					
+					// Suppression de la cellule déplacée
+					BoardGame[y][x] = 0;
+					cpt --;
+				}
+			}
+			for (int y = LenghtBoardGame - 1; y >= 0; y --){
+				int temp = newColumn[y];
+				if (temp != 0){
+					if (y == LenghtBoardGame - 1){
+						BoardGame[cpt1][x] = temp;
+						cpt1 --;
+					}
+					else{
+						if(newColumn[y - 1] == temp){
+							BoardGame[cpt1][x] = temp * 2;
+							BoardGame[y][x] = 0;
+							newColumn[cpt1] = 0;
+							cpt1 --;
+							
+							Score += temp * 2;
+						
+						}
+						else{
+							BoardGame[cpt1][y] = temp;
+							newColumn[y] = 0;
+							cpt1 --;
+						}
+					}
+				}
+			}			
+		}
 		return Score;
+
 	}
 }
