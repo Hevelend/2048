@@ -393,15 +393,15 @@ public class C2048 {
 					cpt --;
 				}
 			}
-			for (int y = LenghtBoardGame - 1; y >= 0; y --){
+			for (int y = 0; y < LenghtBoardGame; y ++){
 				int temp = newColumn[y];
 				if (temp != 0){
-					if (y == 0){
+					if (y == LenghtBoardGame - 1){
 						BoardGame[cpt1][x] = temp;
 						cpt1 --;
 					}
 					else{
-						if(newColumn[y - 1] == temp){
+						if(newColumn[y + 1] == temp){
 							BoardGame[cpt1][x] = temp * 2;
 							BoardGame[y][x] = 0;
 							newColumn[cpt1] = 0;
