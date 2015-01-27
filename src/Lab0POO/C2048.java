@@ -176,10 +176,10 @@ public class C2048 {
 		int valeurMin = 0;
 		int randomTile = 0;
 		int i = 0;
-		int PossibleTile = 2; // Nombre de tuile à placer
+		int PossibleTile = 2; // Nombre de tuiles à placer
 		int FreeTile = 0;
 		
-		//on cree un nombre aléatoire qui permettra de choisir si on 
+		//on crée un nombre aléatoire qui permettra de choisir si on 
 		//obtient un deux ou un quatre sur le plateau de jeu
 		Random rand = new Random();
 		int nombreAleatoire = rand.nextInt(2); 
@@ -205,7 +205,7 @@ public class C2048 {
 			PossibleTile = FreeTile;
 		}
 		
-		while (i != PossibleTile){ // on effectue les lignes suivantes deux fois
+		while (i != PossibleTile){ //on effectue les lignes suivantes deux fois
 				
 			// Les deux variables suivantes permettent de choisir une case 
 			// aléatoirement dans le plateau de jeu 
@@ -213,7 +213,7 @@ public class C2048 {
 			int v1 = (int)(Math.random()*(valeurMax-valeurMin))+valeurMin;
 			int v2 = (int)(Math.random()*(valeurMax-valeurMin))+valeurMin;
 			
-			if(BoardGame[v1][v2] == 0){ //on vérifie que la case aléatoire est vide
+			if(BoardGame[v1][v2] == 0){ //on vérifie que la case est vide
 				//on place la valeur 2 ou 4 aléatoirement
 				BoardGame[v1][v2] = randomTile; 
 				i++;
@@ -246,11 +246,13 @@ public class C2048 {
 			int[] newLine = new int[LenghtBoardGame];
 			int cpt = 0;
 			int cpt1 = 0;
+			
+			//on parcourt les différentes case du jeu
 			for (int x = 0; x < LenghtBoardGame; x ++){
 				int var1 = BoardGame[y][x];
 				newLine[x] = 0;
-					if(var1 != 0){
-						newLine[cpt] = var1;
+					if(var1 != 0){ // si la case n'est pas vide
+						newLine[cpt] = var1; //on place la valeur dans la ligne
 						
 						// Suppression de la cellule déplacée
 						BoardGame[y][x] = 0;
@@ -259,18 +261,21 @@ public class C2048 {
 			}
 		for (int x = 0; x < LenghtBoardGame; x ++){
 			int temp = newLine[x];
-				if (temp != 0){
+				if (temp != 0){ // on regarde si la valeur n'est pas nulle
 					if (x == LenghtBoardGame - 1){
 						BoardGame[y][cpt1] = temp;
 						cpt1 ++;
 					}
 					else{
 						if(newLine[x + 1] == temp){
-							BoardGame[y][cpt1] = temp * 2;
-							newLine[x + 1] = 0;
+							// addition des tuiles identiques
+							BoardGame[y][cpt1] = temp * 2; 
+							// suppression de l'ancien emplacement 
+							//ou il y avait une case non vide
+							newLine[x + 1] = 0; 
 							cpt1 ++;
 							
-							Score += temp *2;
+							Score += temp *2; // on ajoute les points au score
 						
 						}
 						else{
@@ -291,11 +296,13 @@ public class C2048 {
 			int[] newLine = new int[LenghtBoardGame];
 			int cpt = LenghtBoardGame - 1;
 			int cpt1 = LenghtBoardGame - 1;
+			
+			// on parcourt les cases du plateau de droite à gauche
 			for (int x = LenghtBoardGame - 1; x >= 0; x --){
 				int var1 = BoardGame[y][x];
 				newLine[x] = 0;
-				if(var1 != 0){
-					newLine[cpt] = var1;
+				if(var1 != 0){ // si la case n'est pas vide
+					newLine[cpt] = var1;//on place la valeur dans la ligne crée
 					
 					// Suppression de la cellule déplacée
 					BoardGame[y][x] = 0;
@@ -316,7 +323,7 @@ public class C2048 {
 							newLine[cpt1-1] = 0;
 							cpt1 --;
 							
-							Score += temp * 2;
+							Score += temp * 2; // on ajoute les points au score
 						
 						}
 						else{
@@ -338,11 +345,14 @@ public class C2048 {
 			int[] newColumn = new int[LenghtBoardGame];
 			int cpt = 0;
 			int cpt1 = 0;
+			
+			// on parcourt les case du tableau de haut en bas
 			for (int y = 0; y < LenghtBoardGame; y ++){
 				int var1 = BoardGame[y][x];
 				newColumn[y] = 0; // on cree une nouvelle colonne
-					if(var1 != 0){ // si la première case n'est pas vide
-						newColumn[cpt] = var1;
+					if(var1 != 0){ // si la case n'est pas vide
+						//on place la valeur dans la colonne
+						newColumn[cpt] = var1; 
 						
 						// Suppression de la cellule déplacée
 						BoardGame[y][x] = 0;
@@ -362,7 +372,7 @@ public class C2048 {
 							newColumn[y + 1] = 0;
 							cpt1 ++;
 							
-							Score += temp *2;
+							Score += temp *2; // on ajoute les points au score
 						
 						}
 						else{
@@ -379,15 +389,18 @@ public class C2048 {
 	///fonction qui permet de gérer le mouvement vers le bas
 	private int additionBottom(){
 		for (int x = 0; x < LenghtBoardGame ; x ++){
-			//on cree une nouvelle ligne 
+			//on cree une nouvelle colonne 
 			int[] newColumn = new int[LenghtBoardGame];
 			int cpt = LenghtBoardGame - 1;
 			int cpt1 = LenghtBoardGame - 1;
+			
+			//on parcourt les cases du tableau de bas en haut
 			for (int y = LenghtBoardGame - 1; y >= 0; y --){
 				int var1 = BoardGame[y][x];
 				newColumn[y] = 0;
-				if(var1 != 0){
-					newColumn[cpt] = var1;
+				if(var1 != 0){ // si la case n'est pas vide
+					//on place la valeur dans la colonne crée
+					newColumn[cpt] = var1; 
 					
 					// Suppression de la cellule déplacée
 					BoardGame[y][x] = 0;
@@ -408,7 +421,7 @@ public class C2048 {
 							newColumn[cpt1 - 1] = 0;
 							cpt1 --;
 							
-							Score += temp * 2;
+							Score += temp * 2; // on ajoute les points au score
 						
 						}
 						else{
