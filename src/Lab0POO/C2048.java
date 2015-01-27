@@ -50,7 +50,7 @@ public class C2048 {
 		int Direction;
 		
 		this.addTile();
-		System.out.println(this);
+		System.out.println(this); //Affichage avec les nouvelles tuiles
 		Direction = this.directionChoice();
 		this.additionTile(Direction);
 	}
@@ -151,9 +151,11 @@ public class C2048 {
 	        }while(Loop == true);
 		} else {
 			// Génération avec un seed
+			// TempCounter permet d'éviter une erreur de limite de taille
+			// avec CounterLoop
 			int TempCounter = CounterLoop;
+			RandomDirection randomDir = new RandomDirection(GameSeed);
 			while(Loop == true){
-				RandomDirection randomDir = new RandomDirection(GameSeed);
 				Direction = randomDir.random(TempCounter);
 			    if(Direction == 1 || Direction == 2 || Direction == 3 ||
 			       Direction == 4){
